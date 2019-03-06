@@ -7,5 +7,5 @@ public abstract class AnaLyzer {
 
     public Path file;
 
-    public abstract AnalysisResult analyze() throws IOException;
+    public abstract com.javacomp.bmwkata.analysis.AnalysisResult analyze() throws IOException;
 }
