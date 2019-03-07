@@ -32,9 +32,14 @@ public class ResultData {
   public ResultData() {}
 
   public String print() {
+    String language;
+    // JC Always Use Braces
+    if (this.type == 0) language = "Java";
+    else if (type == 1) language = "Python";
+    else language = "other";
     return name
         + "\t"
-        + (this.type == 0 ? "Java" : type == 1 ? "Python" : "other")
+        + language
         + "\t"
         + L
         + "\t"
