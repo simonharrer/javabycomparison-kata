@@ -7,4 +7,6 @@ $ git grep -ho "//[ ]JC .*" | sort | uniq -c
 $ git grep -ho "//[ ]JC .*" | sort | uniq | wc -l
 # check which rules are not yet available in the code
 $ ruby status.rb
+# remove comparison marker comments
+$ ruby prepare.rb
 ```
