@@ -5,14 +5,15 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
-public class PythonLyzer extends AnaLyzer {
-  public PythonLyzer(Path file) {
-    super();
-    super.file = file;
+public class PythonAnalyzer implements Analyzer {
+  private final Path file;
+
+  public PythonAnalyzer(Path file) {
+    this.file = file;
   }
 
   @Override
-  public AnalysisResult analyze() throws IOException {
+  public ResultData analyze() throws IOException {
 
     int imports = 0;
     int LoC = 0;
@@ -35,6 +36,6 @@ public class PythonLyzer extends AnaLyzer {
       }
     }
 
-    return new AnalysisResult(false, super.file.toString(), LoC, commentsLoC, methods, imports);
+    return new ResultData(1, this.file.toString(), LoC, commentsLoC, methods, imports);
   }
 }

@@ -1,18 +1,19 @@
 package com.javabycomparison.kata.analysis;
 
-public class AnalysisResult {
+// JC Avoid Meaningless Terms
+public class ResultData {
   // JC Favor Enums Over Integer Constants
-  public boolean javaFile;
+  public int type;
   private String name;
   // JC Avoid Abbreviations
+  public int L;
   public int LOC;
   public int commentLOC;
   public int numMethod;
   public int nImports;
 
-  public AnalysisResult(
-      boolean java, String name, int LOC, int commentLOC, int numMethod, int nImports) {
-    this.javaFile = java;
+  public ResultData(int type, String name, int LOC, int commentLOC, int numMethod, int nImports) {
+    this.type = type;
     this.name = name;
     this.LOC = LOC;
     this.commentLOC = commentLOC;
@@ -22,18 +23,20 @@ public class AnalysisResult {
 
   // JC Remove Commented-Out Code
   /*
-  public AnalysisResult(boolean java){
+  public ResultData(boolean java){
       this.javaFile = java;
 
   }
   */
 
-  public AnalysisResult() {}
+  public ResultData() {}
 
   public String print() {
     return name
         + "\t"
-        + (this.javaFile ? "Java" : "Python")
+        + (this.type == 0 ? "Java" : type == 1 ? "Python" : "other")
+        + "\t"
+        + L
         + "\t"
         + LOC
         + "\t"

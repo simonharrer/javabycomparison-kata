@@ -1,25 +1,21 @@
 package com.javabycomparison.kata.main;
 
-import com.javabycomparison.kata.analysis.AnalysisResult;
+import com.javabycomparison.kata.analysis.ResultData;
 import com.javabycomparison.kata.search.SearchClient;
-import java.util.List;
+import java.util.LinkedList;
 
 public class StaticAnalysis {
 
   public static void main(String[] args) {
-
     StaticAnalysis analyzer = new StaticAnalysis();
-
-    AnalysisResult[] overallResult = analyzer.run("./src/");
-
+    ResultData[] overallResult = analyzer.run("./src/");
     System.out.println(
         "File Name \t Language \t Lines of Code \t Number of Comments \t Number of Methods \t Number of Imports");
     System.out.println(overallResult[0].print() + "\n" + overallResult[1].print());
   }
 
-  private AnalysisResult[] run(String directoryPath) {
-
-    List<AnalysisResult> results = new SearchClient().collectAllFiles(directoryPath);
+  private ResultData[] run(String directoryPath) {
+    LinkedList<ResultData> results = new SearchClient().collectAllFiles(directoryPath);
     if (results != null) {
       // JC Favor Java API Over DIY
       if (results.size() != 0) {
@@ -33,30 +29,40 @@ public class StaticAnalysis {
         int pyNumMethod = 0;
         int pynImports = 0;
 
+        int LOC = 0;
+        int commentLOC = 0;
+        int numMethod = 0;
+        int nImports = 0;
+
         // JC Favor For-Each Over For Loops
         for (int l = 0; l < results.size(); l = l + 1) {
           System.out.println(results.get(l).print());
 
-          if (results.get(l).javaFile) {
+          if (results.get(l).type == 0) {
             javaLOC += results.get(l).LOC;
             javaCommentLOC += results.get(l).commentLOC;
             javaNumMethod += results.get(l).numMethod;
             javanImports += results.get(l).nImports;
-          } else {
+          } else if (results.get(l).type == 1) {
             pyLOC += results.get(l).LOC;
             pyCommentLOC += results.get(l).commentLOC;
             pyNumMethod += results.get(l).numMethod;
             pynImports += results.get(l).nImports;
+          } else {
+            LOC += results.get(l).LOC;
+            commentLOC += results.get(l).commentLOC;
+            numMethod += results.get(l).numMethod;
+            nImports += results.get(l).nImports;
           }
         }
 
-        return new AnalysisResult[] {
-          new AnalysisResult(
-              true, "Overall Java", javaLOC, javaCommentLOC, javaNumMethod, javanImports),
-          new AnalysisResult(false, "Overall Python", pyLOC, pyCommentLOC, pyNumMethod, pynImports),
+        return new ResultData[] {
+          new ResultData(0, "Overall Java", javaLOC, javaCommentLOC, javaNumMethod, javanImports),
+          new ResultData(1, "Overall Python", pyLOC, pyCommentLOC, pyNumMethod, pynImports),
+          new ResultData(2, "Overall Other", LOC, commentLOC, numMethod, nImports),
         };
       } else {
-        return new AnalysisResult[] {new AnalysisResult()};
+        return new ResultData[] {new ResultData()};
       }
 
       // JC Fail Fast

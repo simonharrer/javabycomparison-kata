@@ -5,15 +5,16 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
-public class JavaLyzer extends AnaLyzer {
+public class JavaAnalyzer implements Analyzer {
 
-  public JavaLyzer(Path file) {
-    super();
-    super.file = file;
+  private final Path file;
+
+  public JavaAnalyzer(Path file) {
+    this.file = file;
   }
 
   @Override
-  public AnalysisResult analyze() throws IOException {
+  public ResultData analyze() throws IOException {
     int imports = 0;
     int LoC = 0;
     int commentsLoC = 0;
@@ -29,6 +30,6 @@ public class JavaLyzer extends AnaLyzer {
       }
     }
 
-    return new AnalysisResult(true, super.file.toString(), LoC, commentsLoC, 0, imports);
+    return new ResultData(0, this.file.toString(), LoC, commentsLoC, 0, imports);
   }
 }
