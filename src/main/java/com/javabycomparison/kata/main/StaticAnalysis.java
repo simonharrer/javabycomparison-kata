@@ -8,10 +8,21 @@ public class StaticAnalysis {
 
   public static void main(String[] args) {
     StaticAnalysis analyzer = new StaticAnalysis();
-    ResultData[] overallResult = analyzer.run("./src/");
-    System.out.println(
-        "File Name \t Language \t Lines of Code \t Number of Comments \t Number of Methods \t Number of Imports");
-    System.out.println(overallResult[0].print() + "\n" + overallResult[1].print());
+    ResultData[] overallResult = analyzer.run(args.length == 0 ? "./src/" : args[0]);
+    // JC Fail Fast
+    // JC Avoid Negations
+    if (overallResult != null) {
+      System.out.println(
+          "File Name \t Language \t Lines of Code \t Number of Comments \t Number of Methods \t Number of Imports");
+      System.out.println(
+          overallResult[0].print()
+              + "\n"
+              + overallResult[1].print()
+              + "\n"
+              + overallResult[2].print());
+    } else {
+      System.err.println("Something went terribly wrong");
+    }
   }
 
   private ResultData[] run(String directoryPath) {

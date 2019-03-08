@@ -1,5 +1,6 @@
 package com.javabycomparison.kata.analysis;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -19,13 +20,17 @@ public class JavaAnalyzer implements Analyzer {
     int LoC = 0;
     int commentsLoC = 0;
 
-    List<String> fileContents = Files.readAllLines(this.file);
+    // JC Always Close Resources
+    BufferedReader reader = Files.newBufferedReader(this.file);
 
-    for (String line : fileContents) {
+    String line;
+    while ((line = reader.readLine()) != null) {
       LoC += 1;
       if (line.trim().startsWith("import")) {
         imports += 1;
-      } else if (line.trim().startsWith("//")) {
+      } else if (line.trim().startsWith("//")
+          || line.trim().startsWith("*")
+          || line.trim().startsWith("/*")) {
         commentsLoC += 1;
       }
     }
