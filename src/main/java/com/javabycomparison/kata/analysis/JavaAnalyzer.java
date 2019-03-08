@@ -16,25 +16,29 @@ public class JavaAnalyzer implements Analyzer {
 
   @Override
   public ResultData analyze() throws IOException {
-    int imports = 0;
-    int LoC = 0;
-    int commentsLoC = 0;
+    if (file != null) {
+      int imports = 0;
+      int LoC = 0;
+      int commentsLoC = 0;
 
-    // JC Always Close Resources
-    BufferedReader reader = Files.newBufferedReader(this.file);
+      // JC Always Close Resources
+      BufferedReader reader = Files.newBufferedReader(this.file);
 
-    String line;
-    while ((line = reader.readLine()) != null) {
-      LoC += 1;
-      if (line.trim().startsWith("import")) {
-        imports += 1;
-      } else if (line.trim().startsWith("//")
-          || line.trim().startsWith("*")
-          || line.trim().startsWith("/*")) {
-        commentsLoC += 1;
+      String line;
+      while ((line = reader.readLine()) != null) {
+        LoC += 1;
+        if (line.trim().startsWith("import")) {
+          imports += 1;
+        } else if (line.trim().startsWith("//")
+            || line.trim().startsWith("*")
+            || line.trim().startsWith("/*")) {
+          commentsLoC += 1;
+        }
       }
-    }
 
-    return new ResultData(0, this.file.toString(), LoC, commentsLoC, 0, imports);
+      return new ResultData(0, this.file.toString(), LoC, commentsLoC, 0, imports);
+    } else {
+      return null;
+    }
   }
 }
