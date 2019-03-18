@@ -3,6 +3,7 @@ package com.javacomp.bmwkata.main;
 import java.util.List;
 
 import com.javacomp.bmwkata.analysis.AnalysisResult;
+import com.javacomp.bmwkata.printing.ResultPrinter;
 import com.javacomp.bmwkata.search.SearchClient;
 
 public class StaticAnalysis {
@@ -13,8 +14,7 @@ public class StaticAnalysis {
 
         AnalysisResult[] overallResult = analyzer.run("./src/");
 
-        System.out.println("File Name \t Language \t Lines of Code \t Number of Comments \t Number of Methods \t Number of Imports");
-        System.out.println(overallResult[0].print() + "\n" + overallResult[1].print());
+        new ResultPrinter().printOverallResults(overallResult);
     }
 
     private AnalysisResult[] run(String directoryPath) {
@@ -61,7 +61,6 @@ public class StaticAnalysis {
             // JC Fail Fast
         }
         System.err.println("There was a problem with the result!");
-
         return null;
     }
 }

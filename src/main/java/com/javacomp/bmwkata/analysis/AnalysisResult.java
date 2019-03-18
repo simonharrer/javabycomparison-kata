@@ -3,7 +3,7 @@ package com.javacomp.bmwkata.analysis;
 public class AnalysisResult {
     // JC Favor Enums Over Integer Constants
     public boolean javaFile;
-    private String name;
+    public String name;
     // JC Avoid Abbreviations
     public int LOC;
     public int commentLOC;

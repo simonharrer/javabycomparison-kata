@@ -15,7 +15,9 @@ public class JavaLyzer extends AnaLyzer {
     @Override
     public AnalysisResult analyze() throws IOException {
         int imports = 0;
+        // JC: Avoid Abbreviations
         int LoC = 0;
+        // JC: Avoid Abbreviations
         int commentsLoC = 0;
 
         List<String> fileContents = Files.readAllLines(this.file);
