@@ -14,20 +14,21 @@ import com.javabycomparison.kata.analysis.ResultData;
 public class SearchClient {
 
   // JC Favor Abstract Over Concrete Types
+  // JC Structure JavaDoc of Methods
   public LinkedList<ResultData> collectAllFiles(String directoryPath) {
     LinkedList<ResultData> resultsList = new LinkedList<>();
     try {
       // JC Always Close Resources
       for (Path file : Files.walk(Paths.get(directoryPath)).collect(Collectors.toSet())) {
         // JC Avoid Compute-Intense Operations During Iteration
-        if (file.toString().matches(".*\\.java")) {
+        if (isJavaFile(file)) {
           // JC Favor Logging over Console Output
           // JC Favor Format Over Concatenation
           System.out.println("File " + file.toString() + " is a Java file. It will be analyzed.");
           ResultData resultData = new JavaAnalyzer(file).analyze();
           resultsList.add(resultData);
           // JC Avoid Compute-Intense Operations During Iteration
-        } else if (file.getFileName().toString().matches(".*\\.py")) {
+        } else if (isPythonFile(file)) {
           // JC Favor Logging over Console Output
           // JC Favor Format Over Concatenation
           System.out.println("File " + file.toString() + " is a Python file. It will be analyzed.");
@@ -54,5 +55,23 @@ public class SearchClient {
       return null;
     }
     return resultsList;
+  }
+
+  private boolean isJavaFile(Path file) {
+    // JC Return Boolean Expressions Directly
+    if (file.toString().matches(".*\\.java")) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  private boolean isPythonFile(Path file) {
+    // JC Return Boolean Expressions Directly
+    // JC Ensure Code Symmetry
+    if (file.getFileName().toString().matches(".*\\.py")) {
+      return true;
+    }
+    return false;
   }
 }

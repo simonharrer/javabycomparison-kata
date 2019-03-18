@@ -7,13 +7,15 @@ public class ResultData {
   // JC Favor Enums Over Integer Constants
   public int type;
   public String name;
-  // JC Avoid Abbreviations
+  // JC Avoid Single-Letter Names
   public int L;
+  // JC Avoid Abbreviations
   public int LOC;
   public int commentLOC;
   public int numMethod;
   public int nImports;
 
+  // JC Structure JavaDoc of Constructors
   public ResultData(int type, String name, int LOC, int commentLOC, int numMethod, int nImports) {
     this.type = type;
     this.name = name;
@@ -30,9 +32,9 @@ public class ResultData {
 
   }
   */
-
+  // JC Structure JavaDoc of Constructors
   public ResultData() {}
-
+  // JC Structure JavaDoc of Methods
   public String print() {
     String language;
     // JC Always Use Braces

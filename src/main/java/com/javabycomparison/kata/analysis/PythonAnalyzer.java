@@ -14,28 +14,39 @@ public class PythonAnalyzer implements Analyzer {
 
   @Override
   public ResultData analyze() throws IOException {
+    // JC Use Java Naming Conventions
+    int number_of_imports = 0;
+    int lines_of_code = 0;
+    int number_of_methods = 0;
+    int comment_lines_of_code = 0;
 
-    int imports = 0;
-    int LoC = 0;
-    int methods = 0;
-    int commentsLoC = 0;
+    // JC Use Java Naming Conventions
+    List<String> file_contents = Files.readAllLines(this.file);
 
-    List<String> fileContents = Files.readAllLines(this.file);
-
-    for (String line : fileContents) {
-      LoC += 1;
+    for (String line : file_contents) {
+      lines_of_code += 1;
       if (line.trim().startsWith("import")) {
-        imports += 1;
+        number_of_imports += 1;
       }
       if (line.trim().startsWith("from")) {
-        imports += 1;
+        number_of_imports += 1;
+        // JC Replace Comments with Constants
+        // In Python a comment starts with '#'
       } else if (line.trim().startsWith("#")) {
-        commentsLoC += 1;
+        comment_lines_of_code += 1;
+        // JC Replace Comments with Constants
+        // In Python a method is defined with 'def'
       } else if (line.trim().startsWith("def")) {
-        methods += 1;
+        number_of_methods += 1;
       }
     }
 
-    return new ResultData(1, this.file.toString(), LoC, commentsLoC, methods, imports);
+    return new ResultData(
+        1,
+        this.file.toString(),
+        lines_of_code,
+        comment_lines_of_code,
+        number_of_methods,
+        number_of_imports);
   }
 }
