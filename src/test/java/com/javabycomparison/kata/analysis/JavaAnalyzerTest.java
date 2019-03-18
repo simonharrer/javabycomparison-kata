@@ -9,11 +9,11 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 class JavaAnalyzerTest {
 
-    @Test
-    void analyze() throws IOException {
-        JavaAnalyzer javaAnalyzer = new JavaAnalyzer(null);
-        // JC Use Meaningful Assertions
-        assertNotNull(javaAnalyzer);
-        assertNull(javaAnalyzer.analyze());
-    }
+  @Test
+  void analyze() throws IOException {
+    JavaAnalyzer javaAnalyzer = new JavaAnalyzer(null);
+    // JC Use Meaningful Assertions
+    assertNotNull(javaAnalyzer);
+    assertNull(javaAnalyzer.analyze());
+  }
 }
