@@ -16,6 +16,7 @@ public class StaticAnalysis {
     if (overallResult != null) {
       ResultPrinter.printOverallResults(overallResult);
     } else {
+      // JC Explain Cause in Message
       System.err.println("Something went terribly wrong");
     }
   }
@@ -60,7 +61,7 @@ public class StaticAnalysis {
             nImports += results.get(l).nImports;
           }
         }
-
+        // JC Document Implementation Decisions
         return new ResultData[] {
           new ResultData(0, "Overall Java", javaLOC, javaCommentLOC, javaNumMethod, javanImports),
           new ResultData(1, "Overall Python", pyLOC, pyCommentLOC, pyNumMethod, pynImports),
@@ -72,6 +73,7 @@ public class StaticAnalysis {
 
       // JC Fail Fast
     }
+    // JC Explain Cause in Message
     System.err.println("There was a problem with the result!");
 
     return null;

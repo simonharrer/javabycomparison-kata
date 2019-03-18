@@ -1,5 +1,4 @@
-import numpy
-
+# do we need this method?
 def global():
     pass
 

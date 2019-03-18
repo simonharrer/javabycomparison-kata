@@ -34,6 +34,8 @@ public class ResultData {
   */
   // JC Structure JavaDoc of Constructors
   public ResultData() {}
+
+  // JC Document Using Examples
   // JC Structure JavaDoc of Methods
   public String print() {
     String language;
@@ -103,5 +105,32 @@ public class ResultData {
             "",
             Collections.nCopies(Math.max(length - String.valueOf(this.nImports).length(), 0), " "))
         + this.nImports;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    // JC Always use Braces
+    if (this == o) return true;
+    // JC Always use Braces
+
+    if (o == null || getClass() != o.getClass()) return false;
+    ResultData that = (ResultData) o;
+    return type == that.type
+        && L == that.L
+        && LOC == that.LOC
+        && commentLOC == that.commentLOC
+        && numMethod == that.numMethod
+        && nImports == that.nImports
+        && name.equals(that.name);
+  }
+
+  @Override
+  public int hashCode() {
+    return super.hashCode();
+  }
+
+  @Override
+  public String toString() {
+    return print();
   }
 }

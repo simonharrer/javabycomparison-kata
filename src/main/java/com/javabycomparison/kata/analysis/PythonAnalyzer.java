@@ -22,7 +22,7 @@ public class PythonAnalyzer implements Analyzer {
 
     // JC Use Java Naming Conventions
     List<String> file_contents = Files.readAllLines(this.file);
-
+    // JC Favor Functional Over Imperative Style
     for (String line : file_contents) {
       lines_of_code += 1;
       if (line.trim().startsWith("import")) {

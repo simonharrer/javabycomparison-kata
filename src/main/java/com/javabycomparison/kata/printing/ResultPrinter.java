@@ -14,6 +14,7 @@ public class ResultPrinter {
   private static final String NUM_METHODS = "  Number of Methods";
   private static final String N_IMPORTS = "  Number of Imports";
 
+  // JC Document Using Examples
   // JC Structure JavaDoc of Methods
   public static void printOverallResults(ResultData[] overallResult) {
 
@@ -30,7 +31,7 @@ public class ResultPrinter {
     StringBuilder stringBuilderForFirstResult = new StringBuilder();
     // JC Avoid Meaningless Terms
     StringBuilder stringBuilderForSecondResult = new StringBuilder();
-    // JC  Group with New Lines
+    // JC Group with New Lines
     stringBuilderForHeader
         .append(
             String.join(
