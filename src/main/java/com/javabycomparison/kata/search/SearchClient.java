@@ -1,14 +1,16 @@
 package com.javabycomparison.kata.search;
 
-import com.javabycomparison.kata.analysis.AnalyzerImpl;
-import com.javabycomparison.kata.analysis.JavaAnalyzer;
-import com.javabycomparison.kata.analysis.PythonAnalyzer;
-import com.javabycomparison.kata.analysis.ResultData;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.LinkedList;
 import java.util.stream.Collectors;
+
+import com.javabycomparison.kata.analysis.AnalyzerImpl;
+import com.javabycomparison.kata.analysis.JavaAnalyzer;
+import com.javabycomparison.kata.analysis.PythonAnalyzer;
+import com.javabycomparison.kata.analysis.ResultData;
 
 public class SearchClient {
 
@@ -24,7 +26,19 @@ public class SearchClient {
     LinkedList<ResultData> resultsList = new LinkedList<>();
     try {
       // JC Always Close Resources
-      for (Path file : Files.walk(Paths.get(directoryPath)).collect(Collectors.toSet())) {
+      for (Path file :
+          Files.walk(Paths.get(directoryPath))
+              .filter(path -> !path.toString().contains(".git"))
+              .filter(
+                  path -> {
+                    try {
+                      return !Files.isHidden(path);
+                      // JC Avoid Exceptions in Streams
+                    } catch (IOException e) {
+                      return false;
+                    }
+                  })
+              .collect(Collectors.toSet())) {
         // JC Avoid Compute-Intense Operations During Iteration
         if (isJavaFile(file)) {
           // JC Favor Logging over Console Output

@@ -13,9 +13,13 @@ public class AnalyzerImpl implements Analyzer {
   }
 
   @Override
-  public ResultData analyze() throws IOException {
+  public ResultData analyze() {
+    try{
     List<String> fileContents = Files.readAllLines(this.file);
     int l = fileContents.size();
     return new ResultData(2, this.file.toString(), l, 0, 0, 0);
+    }catch( IOException ioException){
+      return new ResultData();
+    }
   }
 }

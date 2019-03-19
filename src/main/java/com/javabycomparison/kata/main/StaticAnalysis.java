@@ -1,15 +1,40 @@
 package com.javabycomparison.kata.main;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 import com.javabycomparison.kata.analysis.ResultData;
 import com.javabycomparison.kata.analysis.ResultDataPrinter;
 import com.javabycomparison.kata.printing.ResultPrinter;
 import com.javabycomparison.kata.search.SearchClient;
-import java.util.LinkedList;
+import org.eclipse.jgit.api.errors.GitAPIException;
 
 public class StaticAnalysis {
 
   public static void main(String... args) {
-    analyze(args.length == 0 ? null : args[0], args.length == 2 ? args[1].equals("smry") : false);
+    if (collect()) {
+      analyze(args.length == 0 ? null : args[0], args.length == 2 ? args[1].equals("smry") : false);
+    }
+  }
+
+  private static boolean collect() {
+    List<String> l =
+        Arrays.asList(
+            "https://github.com/simonharrer/textools.git",
+            "https://github.com/javabycomparison/samplecode.git");
+
+    l.stream()
+        .forEach(
+            repo -> {
+              try {
+                new RepositoryFetcher().getRepository(repo);
+              } catch (GitAPIException e) {
+                // JC Explain Empty Catch
+              }
+            });
+
+    return true;
   }
 
   // JC Split Method with Optional Parameters
