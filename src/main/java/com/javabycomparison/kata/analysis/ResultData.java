@@ -2,6 +2,7 @@ package com.javabycomparison.kata.analysis;
 
 import java.util.StringJoiner;
 
+// JC Favor Immutable Over Mutable State
 // JC Avoid Meaningless Terms
 public class ResultData {
   // JC Favor Enums Over Integer Constants

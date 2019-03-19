@@ -1,9 +1,8 @@
 package com.javabycomparison.kata.analysis;
 
+import com.javabycomparison.kata.main.StaticAnalysis;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-
-import com.javabycomparison.kata.main.StaticAnalysis;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

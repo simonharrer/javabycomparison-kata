@@ -1,13 +1,12 @@
 package com.javabycomparison.kata.main;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-
 import com.javabycomparison.kata.analysis.ResultData;
 import com.javabycomparison.kata.analysis.ResultDataPrinter;
 import com.javabycomparison.kata.printing.ResultPrinter;
 import com.javabycomparison.kata.search.SearchClient;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 import org.eclipse.jgit.api.errors.GitAPIException;
 
 public class StaticAnalysis {
@@ -27,8 +26,9 @@ public class StaticAnalysis {
     l.stream()
         .forEach(
             repo -> {
+              // JC Avoid Exceptions in Streams
               try {
-                new RepositoryFetcher().getRepository(repo);
+                new RepositoryFetcher().loadProjectFiles(repo);
               } catch (GitAPIException e) {
                 // JC Explain Empty Catch
               }
@@ -110,6 +110,7 @@ public class StaticAnalysis {
     // JC Explain Cause in Message
     System.err.println("There was a problem with the result!");
 
+    // JC Favor Optional Over Null
     return null;
   }
 }
