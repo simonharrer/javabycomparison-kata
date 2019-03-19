@@ -1,6 +1,6 @@
 package com.javabycomparison.kata.analysis;
 
-import java.util.Collections;
+import java.util.StringJoiner;
 
 // JC Avoid Meaningless Terms
 public class ResultData {
@@ -57,4 +57,16 @@ public class ResultData {
     return super.hashCode();
   }
 
+  @Override
+  public String toString() {
+    return new StringJoiner(", ", ResultData.class.getSimpleName() + "[", "]")
+        .add("type=" + type)
+        .add("name='" + name + "'")
+        .add("L=" + L)
+        .add("LOC=" + LOC)
+        .add("commentLOC=" + commentLOC)
+        .add("numMethod=" + numMethod)
+        .add("nImports=" + nImports)
+        .toString();
+  }
 }
