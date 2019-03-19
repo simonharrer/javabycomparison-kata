@@ -1,9 +1,8 @@
 package com.javabycomparison.kata.printing;
 
-import java.util.Collections;
-
 import com.javabycomparison.kata.analysis.ResultData;
 import com.javabycomparison.kata.analysis.ResultDataPrinter;
+import java.util.Collections;
 
 public class ResultPrinter {
   // JC Remove Superfluous Comments

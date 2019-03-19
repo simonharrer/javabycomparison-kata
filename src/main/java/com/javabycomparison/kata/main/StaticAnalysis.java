@@ -1,11 +1,10 @@
 package com.javabycomparison.kata.main;
 
-import java.util.LinkedList;
-
 import com.javabycomparison.kata.analysis.ResultData;
 import com.javabycomparison.kata.analysis.ResultDataPrinter;
 import com.javabycomparison.kata.printing.ResultPrinter;
 import com.javabycomparison.kata.search.SearchClient;
+import java.util.LinkedList;
 
 public class StaticAnalysis {
 

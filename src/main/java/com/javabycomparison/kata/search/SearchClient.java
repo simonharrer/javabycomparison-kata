@@ -1,15 +1,14 @@
 package com.javabycomparison.kata.search;
 
+import com.javabycomparison.kata.analysis.AnalyzerImpl;
+import com.javabycomparison.kata.analysis.JavaAnalyzer;
+import com.javabycomparison.kata.analysis.PythonAnalyzer;
+import com.javabycomparison.kata.analysis.ResultData;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.LinkedList;
 import java.util.stream.Collectors;
-
-import com.javabycomparison.kata.analysis.AnalyzerImpl;
-import com.javabycomparison.kata.analysis.JavaAnalyzer;
-import com.javabycomparison.kata.analysis.PythonAnalyzer;
-import com.javabycomparison.kata.analysis.ResultData;
 
 public class SearchClient {
 
