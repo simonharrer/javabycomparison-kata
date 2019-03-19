@@ -35,78 +35,6 @@ public class ResultData {
   // JC Structure JavaDoc of Constructors
   public ResultData() {}
 
-  // JC Document Using Examples
-  // JC Structure JavaDoc of Methods
-  public String print() {
-    String language;
-    // JC Always Use Braces
-    if (this.type == 0) language = "Java";
-    else if (type == 1) language = "Python";
-    else language = "other";
-    return name
-        + "\t"
-        + language
-        + "\t"
-        + L
-        + "\t"
-        + LOC
-        + "\t"
-        + commentLOC
-        + "\t"
-        + numMethod
-        + "\t"
-        + nImports;
-  }
-
-  public String printFileName(int length) {
-    // JC Favor Format over Concatenation
-    return String.join("", Collections.nCopies(Math.max(length - this.name.length(), 0), " "))
-        + this.name;
-  }
-
-  public String printLanguage(int length) {
-    String language;
-    // JC Always Use Braces
-    if (this.type == 0) language = "Java";
-    else if (type == 1) language = "Python";
-    else language = "other";
-    // JC Favor Format over Concatenation
-    return String.join("", Collections.nCopies(Math.max(length - language.length(), 0), " "))
-        + language;
-  }
-
-  public String printLOC(int length) {
-    // JC Favor Format over Concatenation
-    return String.join(
-            "", Collections.nCopies(Math.max(length - String.valueOf(this.LOC).length(), 0), " "))
-        + this.LOC;
-  }
-
-  public String printCommentLOC(int length) {
-    // JC Favor Format over Concatenation
-    return String.join(
-            "",
-            Collections.nCopies(
-                Math.max(length - String.valueOf(this.commentLOC).length(), 0), " "))
-        + this.commentLOC;
-  }
-
-  public String printNumMethodLOC(int length) {
-    // JC Favor Format over Concatenation
-    return String.join(
-            "",
-            Collections.nCopies(Math.max(length - String.valueOf(this.numMethod).length(), 0), " "))
-        + this.numMethod;
-  }
-
-  public String printNImportsLOC(int length) {
-    // JC Favor Format over Concatenation
-    return String.join(
-            "",
-            Collections.nCopies(Math.max(length - String.valueOf(this.nImports).length(), 0), " "))
-        + this.nImports;
-  }
-
   @Override
   public boolean equals(Object o) {
     // JC Always use Braces
@@ -129,8 +57,4 @@ public class ResultData {
     return super.hashCode();
   }
 
-  @Override
-  public String toString() {
-    return print();
-  }
 }

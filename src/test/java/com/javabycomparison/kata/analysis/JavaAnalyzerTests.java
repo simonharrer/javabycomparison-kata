@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 // JC Describe Your Tests
-class JavaAnalyzerTest {
+class JavaAnalyzerTests {
 
   @Test
   void analyze() throws IOException {

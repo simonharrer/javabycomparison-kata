@@ -3,6 +3,7 @@ package com.javabycomparison.kata.printing;
 import java.util.Collections;
 
 import com.javabycomparison.kata.analysis.ResultData;
+import com.javabycomparison.kata.analysis.ResultDataPrinter;
 
 public class ResultPrinter {
   // JC Remove Superfluous Comments
@@ -39,8 +40,10 @@ public class ResultPrinter {
                 Collections.nCopies(
                     Math.max(calculateFileNameLength(r1, r2) - FILE_NAME.length(), 0), " ")))
         .append(FILE_NAME);
-    stringBuilderForFirstResult.append(r1.printFileName(calculateFileNameLength(r1, r2)));
-    stringBuilderForSecondResult.append(r2.printFileName(calculateFileNameLength(r1, r2)));
+    // JC Avoid Abbreviations
+    ResultDataPrinter rdp = new ResultDataPrinter();
+    stringBuilderForFirstResult.append(rdp.printFileName(r1, calculateFileNameLength(r1, r2)));
+    stringBuilderForSecondResult.append(rdp.printFileName(r2, calculateFileNameLength(r1, r2)));
     stringBuilderForHeader
         .append(
             String.join(
@@ -48,16 +51,16 @@ public class ResultPrinter {
                 Collections.nCopies(
                     Math.max(calculateLanguageLength(r1, r2) - LANGUAGE.length(), 0), " ")))
         .append(LANGUAGE);
-    stringBuilderForFirstResult.append(r1.printLanguage(calculateLanguageLength(r1, r2)));
-    stringBuilderForSecondResult.append(r2.printLanguage(calculateLanguageLength(r1, r2)));
+    stringBuilderForFirstResult.append(rdp.printLanguage(r1, calculateLanguageLength(r1, r2)));
+    stringBuilderForSecondResult.append(rdp.printLanguage(r2, calculateLanguageLength(r1, r2)));
     stringBuilderForHeader
         .append(
             String.join(
                 "",
                 Collections.nCopies(Math.max(calculateLOCLength(r1, r2) - LOC.length(), 0), " ")))
         .append(LOC);
-    stringBuilderForFirstResult.append(r1.printLOC(calculateLOCLength(r1, r2)));
-    stringBuilderForSecondResult.append(r2.printLOC(calculateLOCLength(r1, r2)));
+    stringBuilderForFirstResult.append(rdp.printLOC(r1, calculateLOCLength(r1, r2)));
+    stringBuilderForSecondResult.append(rdp.printLOC(r2, calculateLOCLength(r1, r2)));
     stringBuilderForHeader
         .append(
             String.join(
@@ -65,8 +68,8 @@ public class ResultPrinter {
                 Collections.nCopies(
                     Math.max(calculateCommentLOCLength(r1, r2) - COMMENT_LOC.length(), 0), " ")))
         .append(COMMENT_LOC);
-    stringBuilderForFirstResult.append(r1.printCommentLOC(calculateCommentLOCLength(r1, r2)));
-    stringBuilderForSecondResult.append(r2.printCommentLOC(calculateCommentLOCLength(r1, r2)));
+    stringBuilderForFirstResult.append(rdp.printCommentLOC(r1, calculateCommentLOCLength(r1, r2)));
+    stringBuilderForSecondResult.append(rdp.printCommentLOC(r2, calculateCommentLOCLength(r1, r2)));
     stringBuilderForHeader
         .append(
             String.join(
@@ -74,8 +77,10 @@ public class ResultPrinter {
                 Collections.nCopies(
                     Math.max(calculateNumMethodsLength(r1, r2) - NUM_METHODS.length(), 0), " ")))
         .append(NUM_METHODS);
-    stringBuilderForFirstResult.append(r1.printNumMethodLOC(calculateNumMethodsLength(r1, r2)));
-    stringBuilderForSecondResult.append(r2.printNumMethodLOC(calculateNumMethodsLength(r1, r2)));
+    stringBuilderForFirstResult.append(
+        rdp.printNumMethodLOC(r1, calculateNumMethodsLength(r1, r2)));
+    stringBuilderForSecondResult.append(
+        rdp.printNumMethodLOC(r2, calculateNumMethodsLength(r1, r2)));
     stringBuilderForHeader
         .append(
             String.join(
@@ -83,8 +88,8 @@ public class ResultPrinter {
                 Collections.nCopies(
                     Math.max(calculateNImportsLength(r1, r2) - N_IMPORTS.length(), 0), " ")))
         .append(N_IMPORTS);
-    stringBuilderForFirstResult.append(r1.printNImportsLOC(calculateNImportsLength(r1, r2)));
-    stringBuilderForSecondResult.append(r2.printNImportsLOC(calculateNImportsLength(r1, r2)));
+    stringBuilderForFirstResult.append(rdp.printNImportsLOC(r1, calculateNImportsLength(r1, r2)));
+    stringBuilderForSecondResult.append(rdp.printNImportsLOC(r2, calculateNImportsLength(r1, r2)));
     System.out.println(stringBuilderForHeader.toString());
     System.out.println(stringBuilderForFirstResult.toString());
     System.out.println(stringBuilderForSecondResult.toString());

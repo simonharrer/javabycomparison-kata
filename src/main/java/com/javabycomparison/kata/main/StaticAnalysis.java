@@ -3,14 +3,20 @@ package com.javabycomparison.kata.main;
 import java.util.LinkedList;
 
 import com.javabycomparison.kata.analysis.ResultData;
+import com.javabycomparison.kata.analysis.ResultDataPrinter;
 import com.javabycomparison.kata.printing.ResultPrinter;
 import com.javabycomparison.kata.search.SearchClient;
 
 public class StaticAnalysis {
 
-  public static void main(String[] args) {
+  public static void main(String... args) {
+    analyze(args.length == 0 ? null : args[0], args.length == 2 ? args[1].equals("smry") : false);
+  }
+
+  // JC Split Method with Optional Parameters
+  private static void analyze(String p, boolean smry) {
     StaticAnalysis analyzer = new StaticAnalysis();
-    ResultData[] overallResult = analyzer.run(args.length == 0 ? "./src/" : args[0]);
+    ResultData[] overallResult = analyzer.run(p == null ? "./src/" : p, smry);
     // JC Fail Fast
     // JC Avoid Negations
     if (overallResult != null) {
@@ -21,8 +27,9 @@ public class StaticAnalysis {
     }
   }
 
-  private ResultData[] run(String directoryPath) {
-    LinkedList<ResultData> results = new SearchClient().collectAllFiles(directoryPath);
+  // JC Split Method with Boolean Parameters
+  private ResultData[] run(String directoryPath, boolean smry) {
+    LinkedList<ResultData> results = new SearchClient(smry).collectAllFiles(directoryPath);
     if (results != null) {
       // JC Favor Java API Over DIY
       if (results.size() != 0) {
@@ -43,22 +50,25 @@ public class StaticAnalysis {
 
         // JC Favor For-Each Over For Loops
         for (int l = 0; l < results.size(); l = l + 1) {
-          System.out.println(results.get(l).print());
-          if (results.get(l).type == 0) {
-            javaLOC += results.get(l).LOC;
-            javaCommentLOC += results.get(l).commentLOC;
-            javaNumMethod += results.get(l).numMethod;
-            javanImports += results.get(l).nImports;
-          } else if (results.get(l).type == 1) {
-            pyLOC += results.get(l).LOC;
-            pyCommentLOC += results.get(l).commentLOC;
-            pyNumMethod += results.get(l).numMethod;
-            pynImports += results.get(l).nImports;
+          ResultData resultData = results.get(l);
+          if (!smry) {
+            System.out.println(new ResultDataPrinter().print(resultData));
+          }
+          if (resultData.type == 0) {
+            javaLOC += resultData.LOC;
+            javaCommentLOC += resultData.commentLOC;
+            javaNumMethod += resultData.numMethod;
+            javanImports += resultData.nImports;
+          } else if (resultData.type == 1) {
+            pyLOC += resultData.LOC;
+            pyCommentLOC += resultData.commentLOC;
+            pyNumMethod += resultData.numMethod;
+            pynImports += resultData.nImports;
           } else {
-            LOC += results.get(l).LOC;
-            commentLOC += results.get(l).commentLOC;
-            numMethod += results.get(l).numMethod;
-            nImports += results.get(l).nImports;
+            LOC += resultData.LOC;
+            commentLOC += resultData.commentLOC;
+            numMethod += resultData.numMethod;
+            nImports += resultData.nImports;
           }
         }
         // JC Document Implementation Decisions

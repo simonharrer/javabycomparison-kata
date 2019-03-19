@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class PythonAnalyzerTest {
+public class PythonAnalyzerTests {
 
   // JC Favor Standalone Tests
   private ResultData pythonResult;

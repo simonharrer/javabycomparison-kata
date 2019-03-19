@@ -13,6 +13,12 @@ import com.javabycomparison.kata.analysis.ResultData;
 
 public class SearchClient {
 
+  private boolean smry;
+
+  public SearchClient(boolean smry) {
+    this.smry = smry;
+  }
+
   // JC Favor Abstract Over Concrete Types
   // JC Structure JavaDoc of Methods
   public LinkedList<ResultData> collectAllFiles(String directoryPath) {
@@ -24,14 +30,19 @@ public class SearchClient {
         if (isJavaFile(file)) {
           // JC Favor Logging over Console Output
           // JC Favor Format Over Concatenation
-          System.out.println("File " + file.toString() + " is a Java file. It will be analyzed.");
+          if (!smry) {
+            System.out.println("File " + file.toString() + " is a Java file. It will be analyzed.");
+          }
           ResultData resultData = new JavaAnalyzer(file).analyze();
           resultsList.add(resultData);
           // JC Avoid Compute-Intense Operations During Iteration
         } else if (isPythonFile(file)) {
           // JC Favor Logging over Console Output
           // JC Favor Format Over Concatenation
-          System.out.println("File " + file.toString() + " is a Python file. It will be analyzed.");
+          if (!smry) {
+            System.out.println(
+                "File " + file.toString() + " is a Python file. It will be analyzed.");
+          }
           final ResultData resultData = new PythonAnalyzer(file).analyze();
           resultsList.add(resultData);
         } else {
@@ -39,11 +50,15 @@ public class SearchClient {
           if (!Files.isDirectory(file)) {
             // JC Favor Logging over Console Output
             // JC Favor Format Over Concatenation
-            System.out.println(
-                "File " + file.toString() + " is neither a Java file nor a Python file.");
+            if (!smry) {
+              System.out.println(
+                  "File " + file.toString() + " is neither a Java file nor a Python file.");
+            }
             resultsList.add(new AnalyzerImpl(file).analyze());
           } else {
-            System.out.println("Skipping directory " + file + ".");
+            if (!smry) {
+              System.out.println("Skipping directory " + file + ".");
+            }
           }
         }
       }
