@@ -12,9 +12,7 @@ import org.eclipse.jgit.api.errors.GitAPIException;
 public class StaticAnalysis {
 
   public static void main(String... args) {
-    if (collect()) {
-      analyze(args.length == 0 ? null : args[0], args.length == 2 ? args[1].equals("smry") : false);
-    }
+    analyze(args.length == 0 ? null : args[0], args.length == 2 ? args[1].equals("smry") : false);
   }
 
   private static boolean collect() {
@@ -31,6 +29,7 @@ public class StaticAnalysis {
                 new RepositoryFetcher().loadProjectFiles(repo);
               } catch (GitAPIException e) {
                 // JC Explain Empty Catch
+                e.printStackTrace();
               }
             });
 

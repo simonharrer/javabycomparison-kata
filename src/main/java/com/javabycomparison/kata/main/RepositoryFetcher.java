@@ -10,7 +10,7 @@ import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
 
 public class RepositoryFetcher {
-  String reposRoot = "./src/main/resources/repos/";
+  String reposRoot = "./repos/";
 
   // JC Use Domain Terminology
   public void loadProjectFiles(String url) throws GitAPIException {
@@ -23,7 +23,7 @@ public class RepositoryFetcher {
     String destinationFile = reposRoot + url.split("/")[url.split("/").length - 1] + "/";
     deleteStaleDir(determinePathExistence(destinationFile));
 
-    Git.cloneRepository().setURI(url).setDirectory(new File(destinationFile)).call();
+    Git.cloneRepository().setURI(url).setDirectory(new File(destinationFile)).call().close();
   }
 
   // JC Avoid Optional Fields or Parameters
