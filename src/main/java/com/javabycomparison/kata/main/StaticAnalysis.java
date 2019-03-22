@@ -1,12 +1,15 @@
 package com.javabycomparison.kata.main;
 
-import com.javabycomparison.kata.analysis.ResultData;
-import com.javabycomparison.kata.analysis.ResultDataPrinter;
-import com.javabycomparison.kata.printing.ResultPrinter;
-import com.javabycomparison.kata.search.SearchClient;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+
+import com.javabycomparison.kata.analysis.ResultData;
+import com.javabycomparison.kata.analysis.ResultDataPrinter;
+import com.javabycomparison.kata.printing.CSVPrinter;
+import com.javabycomparison.kata.printing.ResultPrinter;
+import com.javabycomparison.kata.search.SearchClient;
 import org.eclipse.jgit.api.errors.GitAPIException;
 
 public class StaticAnalysis {
@@ -45,6 +48,12 @@ public class StaticAnalysis {
     // JC Avoid Negations
     if (overallResult != null) {
       ResultPrinter.printOverallResults(overallResult);
+      try {
+        new CSVPrinter("output.csv").writeCSV(overallResult);
+      } catch (IOException e) {
+        // JC Explain Cause in Message
+        System.err.println("Something went a bit wrong");
+      }
     } else {
       // JC Explain Cause in Message
       System.err.println("Something went terribly wrong");
