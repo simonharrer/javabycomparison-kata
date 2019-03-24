@@ -1,5 +1,10 @@
 ./mvnw clean test exec:java
 ruby prepare.rb
+cp -r .mvn ../kata
 cp -r src ../kata
+cp src/pom.xml ../kata/pom.xml
+cp mvnw ../kata/mvnw
+cp mvnw.cmd ../kata/mvnw.cmd
+cp .gitignore ../kata/.gitignore
 git checkout src
-(cd ../kata && ./mvnw clean test exec:java && git add . --all && git commit -m 'update kata' && git push)
+(cd ../kata && ./mvnw clean test exec:java && git add . --all && git commit -m 'update kata (automated commit)' && git push)

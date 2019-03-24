@@ -9,4 +9,8 @@ $ git grep -ho "//[ ]JC .*" | sort | uniq | wc -l
 $ ruby status.rb
 # remove comparison marker comments
 $ ruby prepare.rb
+
+# release new kata version
+# REQUIRES ../kata directory
+$ ./release
 ```

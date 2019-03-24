@@ -4,3 +4,5 @@ target/
 repos/
 output.csv
 build/
+.DS_Store
+bin/
