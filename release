@@ -1,0 +1,5 @@
+./mvnw clean test exec:java
+ruby prepare.rb
+cp -r src ../kata
+git checkout src
+(cd ../kata && ./mvnw clean test exec:java && git add . --all && git commit -m 'update kata' && git push)
