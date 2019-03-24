@@ -1,13 +1,12 @@
 package com.javabycomparison.kata.printing;
 
+import com.javabycomparison.kata.analysis.ResultData;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.function.Function;
-
-import com.javabycomparison.kata.analysis.ResultData;
 
 public class CSVPrinter {
   private Path csvFile;
@@ -20,7 +19,7 @@ public class CSVPrinter {
     // JC Always Close Resources
     FileOutputStream writer = new FileOutputStream(csvFile.toFile());
     writer.write(
-        "File Name, Language, Lines of Code, Number of Comments, Number of Methods, Number of Imports\n"
+        "File Name,Language,Lines of Code,Number of Comments,Number of Methods,Number of Imports\n"
             .getBytes());
     Arrays.stream(overallResult)
         .filter(result -> null != result)
@@ -30,7 +29,7 @@ public class CSVPrinter {
               @Override
               public String apply(ResultData result) {
                 return String.join(
-                        ", ",
+                        ",",
                         result.name,
                         (result.type == 0) == true ? "Java" : "Python",
                         String.valueOf(result.LOC),

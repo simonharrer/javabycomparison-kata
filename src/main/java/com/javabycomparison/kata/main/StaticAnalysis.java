@@ -1,15 +1,14 @@
 package com.javabycomparison.kata.main;
 
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-
 import com.javabycomparison.kata.analysis.ResultData;
 import com.javabycomparison.kata.analysis.ResultDataPrinter;
 import com.javabycomparison.kata.printing.CSVPrinter;
 import com.javabycomparison.kata.printing.ResultPrinter;
 import com.javabycomparison.kata.search.SearchClient;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 import org.eclipse.jgit.api.errors.GitAPIException;
 
 public class StaticAnalysis {
