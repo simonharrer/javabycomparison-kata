@@ -24,7 +24,7 @@ class IntegrationTests {
         "     File Name  Language  Lines of Code  Number of Comments  Number of Methods  Number of Imports\n"
             + "  Overall Java      Java             15                   4                  0                  0\n"
             + "Overall Python    Python             16                   3                  3                  0\n",
-        output.replaceAll("\\\\", "/").replaceAll("\\r\\n", "\\n"));
+        output.replaceAll("\\\\", "/").replaceAll("\\r\\n", "\n"));
   }
 
   @Test
@@ -45,7 +45,7 @@ class IntegrationTests {
             + "     File Name  Language  Lines of Code  Number of Comments  Number of Methods  Number of Imports\n"
             + "  Overall Java      Java             15                   4                  0                  0\n"
             + "Overall Python    Python              0                   0                  0                  0\n",
-        output.replaceAll("\\\\", "/").replaceAll("\\r\\n", "\\n"));
+        output.replaceAll("\\\\", "/").replaceAll("\\r\\n", "\n"));
   }
 
   @Test
@@ -66,7 +66,7 @@ class IntegrationTests {
             + "     File Name  Language  Lines of Code  Number of Comments  Number of Methods  Number of Imports\n"
             + "  Overall Java      Java              0                   0                  0                  0\n"
             + "Overall Python    Python             16                   3                  3                  0\n",
-        output.replaceAll("\\\\", "/").replaceAll("\\r\\n", "\\n"));
+        output.replaceAll("\\\\", "/").replaceAll("\\r\\n", "\n"));
   }
 
   private static String capture(Runnable runnable) {
