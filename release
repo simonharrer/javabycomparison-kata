@@ -2,7 +2,7 @@
 ruby prepare.rb
 cp -r .mvn ../kata
 cp -r src ../kata
-cp src/pom.xml ../kata/pom.xml
+cp pom.xml ../kata/pom.xml
 cp mvnw ../kata/mvnw
 cp mvnw.cmd ../kata/mvnw.cmd
 cp .gitignore ../kata/.gitignore
