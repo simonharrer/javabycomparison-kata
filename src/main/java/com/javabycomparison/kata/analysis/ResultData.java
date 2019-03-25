@@ -19,7 +19,7 @@ public class ResultData {
   // JC Structure JavaDoc of Constructors
   public ResultData(int type, String name, int LOC, int commentLOC, int numMethod, int nImports) {
     this.type = type;
-    this.name = name;
+    this.name = name.replaceAll("\\\\", "/");
     this.LOC = LOC;
     this.commentLOC = commentLOC;
     this.numMethod = numMethod;
